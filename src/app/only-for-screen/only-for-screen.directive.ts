@@ -13,16 +13,16 @@ export class OnlyForScreenDirective implements OnInit, OnDestroy {
 
   constructor(
     private onlyForScreenService: OnlyForScreenService,
-    private el: ElementRef
+    private el: ElementRef,
   ) { }
 
   ngOnInit(): void {
-    this.setVisibility(this.onlyForScreen === this.onlyForScreenService.initialWidth);
+    this.setVisibility(this.onlyForScreen === this.onlyForScreenService.initialScreenType);
     this.onlyForScreenService.screenType$.pipe(
       takeUntil(this.destroy$),
     ).subscribe(size => {
       this.setVisibility(this.onlyForScreen === size);
-    })
+    });
   }
 
   setVisibility(isVisible: boolean): void {
@@ -33,5 +33,4 @@ export class OnlyForScreenDirective implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
 }

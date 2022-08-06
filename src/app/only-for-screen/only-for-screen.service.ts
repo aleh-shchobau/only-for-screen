@@ -13,20 +13,19 @@ export class OnlyForScreenService {
     tablet: 768,
   }
   screenType$: Observable<string>
-  initialWidth = this.checkWidth(window.innerWidth);
-
+  initialScreenType = this.getScreenType(window.innerWidth);
 
   constructor() {
     this.screenType$ = fromEvent(window, 'resize').pipe(
-      map(() => this.checkWidth(window.innerWidth))
+      map(() => this.getScreenType(window.innerWidth))
     )
   }
 
-  checkWidth(width: number): string {
+  getScreenType(width: number): string {
     if (width < this.config.mobile) {
       return 'mobile'
     } else
-      if (width >= this.config.mobile && width < this.config.tablet) {
+      if (width < this.config.tablet) {
         return 'tablet'
       } else {
         return 'desktop'
