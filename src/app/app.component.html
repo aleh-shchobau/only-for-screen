@@ -1,5 +1,7 @@
-<div *ngFor="let item of items">
-  <span [onlyForScreen]="'desktop'">shown on big screens</span>
-  <span [onlyForScreen]="'tablet'">shown on tablet screens</span>
-  <span [onlyForScreen]="'mobile'">shown on small screens</span>
-</div>
+<cdk-virtual-scroll-viewport itemSize="20" class="viewport" minBufferPx="200" maxBufferPx="400">
+  <div *cdkVirtualFor="let item of items" class="items">
+    <span [onlyForScreen]="'desktop'">shown on big screens</span>
+    <span [onlyForScreen]="'tablet'">shown on tablet screens</span>
+    <span [onlyForScreen]="'mobile'">shown on small screens</span>
+  </div>
+</cdk-virtual-scroll-viewport>

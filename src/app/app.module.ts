@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { OnlyForScreenModule } from './only-for-screen/only-for-screen.module';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import { OnlyForScreenModule } from './only-for-screen/only-for-screen.module';
   imports: [
     BrowserModule,
     OnlyForScreenModule,
+    ScrollingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
