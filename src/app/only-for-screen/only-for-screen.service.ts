@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { fromEvent, map, Observable } from 'rxjs';
+import { distinctUntilChanged, fromEvent, map, Observable } from 'rxjs';
 import { IConfig } from './config.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OnlyForScreenService {
-
 
   config: IConfig = {
     mobile: 480,
@@ -17,7 +16,8 @@ export class OnlyForScreenService {
 
   constructor() {
     this.screenType$ = fromEvent(window, 'resize').pipe(
-      map(() => this.getScreenType(window.innerWidth))
+      map(() => this.getScreenType(window.innerWidth)),
+      distinctUntilChanged(),
     )
   }
 
